@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/wallpaper_android">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enrollment Summary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#22577A"
+        android:layout_marginBottom="16dp" />
+
+    <!-- RecyclerView for List of Enrolled Subjects -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEnrolledSubjects"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#80FFFFFF"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Total Credits Display -->
+    <TextView
+        android:id="@+id/tvTotalCredits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total Credits: 0"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Finish Button -->
+    <Button
+        android:id="@+id/btnFinish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Finish"
+        android:backgroundTint="#38A3A5"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:textStyle="bold" />
+</LinearLayout>

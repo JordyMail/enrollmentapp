@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@drawable/wallpaper_android">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enrollment Menu"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#CC5803"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Button to Select Subjects -->
+    <Button
+        android:id="@+id/btnSelectSubjects"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Subjects"
+        android:backgroundTint="#38A3A5"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Button to View Enrollment Summary -->
+    <Button
+        android:id="@+id/btnViewSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Enrollment Summary"
+        android:backgroundTint="#57CC99"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Button to Back to Home page -->
+    <Button
+        android:id="@+id/btnBackHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to Home"
+        android:backgroundTint="#22577A"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:textStyle="bold" />
+</LinearLayout>
