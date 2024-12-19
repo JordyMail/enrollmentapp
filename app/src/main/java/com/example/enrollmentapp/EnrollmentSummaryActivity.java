@@ -5,84 +5,75 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class EnrollmentSummaryActivity extends AppCompatActivity {
 
-    private TextView tvTitle, tvTotalCredits;
     private RecyclerView rvEnrolledSubjects;
+    private TextView tvTotalCredits;
     private Button btnFinish;
-
     private List<String> enrolledSubjects;
-    private int totalCredits = 0;
+    private int totalCredits;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enrollment_summary);
 
-        // Initialize UI components
-        tvTitle = findViewById(R.id.tvTitle);
-        tvTotalCredits = findViewById(R.id.tvTotalCredits);
+        // Initialize views
         rvEnrolledSubjects = findViewById(R.id.rvEnrolledSubjects);
+        tvTotalCredits = findViewById(R.id.tvTotalCredits);
         btnFinish = findViewById(R.id.btnFinish);
 
-        // Initialize enrolled subjects list (replace with actual data)
+        // Sample data for enrolled subjects
         enrolledSubjects = new ArrayList<>();
-        enrolledSubjects.add("Mathematics (3 credits)");
-        enrolledSubjects.add("Physics (4 credits)");
-        enrolledSubjects.add("Chemistry (3 credits)");
-        enrolledSubjects.add("Computer Science (5 credits)");
+        enrolledSubjects.add("Mathematics - 3 Credits");
+        enrolledSubjects.add("Physics - 4 Credits");
+        enrolledSubjects.add("Chemistry - 3 Credits");
 
-        // Calculate total credits (replace with actual logic)
-        totalCredits = 3 + 4 + 3 + 5;
-
-        // Set total credits display
+        // Calculate total credits (dummy logic)
+        totalCredits = 10; // Example value
         tvTotalCredits.setText("Total Credits: " + totalCredits);
 
-        // Setup RecyclerView
+        // Set up RecyclerView
         rvEnrolledSubjects.setLayoutManager(new LinearLayoutManager(this));
-        rvEnrolledSubjects.setAdapter(new SubjectsAdapter(enrolledSubjects));
+        EnrolledSubjectsAdapter adapter = new EnrolledSubjectsAdapter(enrolledSubjects);
+        rvEnrolledSubjects.setAdapter(adapter);
 
-        // Finish button click listener
+        // Set click listener for finish button
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate back to HomeActivity
-                Toast.makeText(EnrollmentSummaryActivity.this, "Returning to Home", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(EnrollmentSummaryActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                finish(); // Close EnrollmentSummaryActivity
+                finish();
             }
         });
     }
 
-    // Adapter class for RecyclerView
-    private class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.SubjectsViewHolder> {
+    // RecyclerView Adapter for displaying enrolled subjects
+    private class EnrolledSubjectsAdapter extends RecyclerView.Adapter<EnrolledSubjectsAdapter.SubjectViewHolder> {
 
         private List<String> subjects;
 
-        public SubjectsAdapter(List<String> subjects) {
+        public EnrolledSubjectsAdapter(List<String> subjects) {
             this.subjects = subjects;
         }
 
         @Override
-        public SubjectsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public SubjectViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = getLayoutInflater().inflate(android.R.layout.simple_list_item_1, parent, false);
-            return new SubjectsViewHolder(view);
+            return new SubjectViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(SubjectsViewHolder holder, int position) {
-            String subject = subjects.get(position);
-            holder.bind(subject);
+        public void onBindViewHolder(SubjectViewHolder holder, int position) {
+            holder.bind(subjects.get(position));
         }
 
         @Override
@@ -90,12 +81,11 @@ public class EnrollmentSummaryActivity extends AppCompatActivity {
             return subjects.size();
         }
 
-        // ViewHolder class for RecyclerView items
-        public class SubjectsViewHolder extends RecyclerView.ViewHolder {
+        class SubjectViewHolder extends RecyclerView.ViewHolder {
 
             private TextView textView;
 
-            public SubjectsViewHolder(View itemView) {
+            public SubjectViewHolder(View itemView) {
                 super(itemView);
                 textView = itemView.findViewById(android.R.id.text1);
             }

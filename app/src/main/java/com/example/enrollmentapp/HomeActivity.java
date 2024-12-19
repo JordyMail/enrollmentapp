@@ -5,66 +5,60 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
     private TextView tvWelcomeMessage;
-    private Button btnEnrollmentMenu, btnViewSummary, btnLogout;
+    private Button btnEnrollmentMenu;
+    private Button btnViewSummary;
+    private Button btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Initialize UI components
+        // Initialize views
         tvWelcomeMessage = findViewById(R.id.tvWelcomeMessage);
         btnEnrollmentMenu = findViewById(R.id.btnEnrollmentMenu);
         btnViewSummary = findViewById(R.id.btnViewSummary);
         btnLogout = findViewById(R.id.btnLogout);
 
-        // Get the student's name (from intent or shared preferences)
-        Intent intent = getIntent();
-        String studentName = intent.getStringExtra("STUDENT_NAME");
+        // Retrieve student name from intent or shared preferences
+        String studentName = getIntent().getStringExtra("STUDENT_NAME");
         if (studentName == null || studentName.isEmpty()) {
-            studentName = "Student"; // Default fallback
+            studentName = "Student"; // Default name if not provided
         }
-
-        // Set the welcome message
         tvWelcomeMessage.setText("Welcome, " + studentName + "!");
 
-        // Handle Enrollment Menu button click
+        // Set click listener for enrollment menu button
         btnEnrollmentMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to Enrollment Menu Activity
                 Intent intent = new Intent(HomeActivity.this, EnrollmentActivity.class);
                 startActivity(intent);
             }
         });
 
-        // Handle View Summary button click
+        // Set click listener for view summary button
         btnViewSummary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to Enrollment Summary Activity
                 Intent intent = new Intent(HomeActivity.this, EnrollmentSummaryActivity.class);
                 startActivity(intent);
             }
         });
 
-        // Handle Logout button click
+        // Set click listener for logout button
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Simulate logout process
-                Toast.makeText(HomeActivity.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
-                // Navigate back to LoginActivity
+                // Navigate back to login activity and clear the activity stack
                 Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                finish(); // Close HomeActivity
+                finish();
             }
         });
     }
